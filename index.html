@@ -20,9 +20,6 @@
     --accent-soft: #F6E3EA;
     --accent-ink: #FFF7FA;
     --line: #E5D8D6;
-    --screen: #FDFBFA;
-    --screen-2: #F4EEEC;
-    --bezel: #1C171A;
     --shadow: 0 1px 2px rgba(42,32,36,.06), 0 10px 30px rgba(42,32,36,.08);
   }
   @media (prefers-color-scheme: dark) {
@@ -36,9 +33,6 @@
       --accent-soft: #45303A;
       --accent-ink: #2A1520;
       --line: #443942;
-      --screen: #241E22;
-      --screen-2: #2E262B;
-      --bezel: #0C090B;
       --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.4);
     }
   }
@@ -115,159 +109,6 @@
     font-variant-numeric: tabular-nums;
   }
   section > .lede { margin-bottom: 20px; color: var(--muted); }
-
-  /* ---------- Phones ---------- */
-  .phones {
-    display: flex; gap: 20px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    margin: 0 -18px;
-    padding: 6px 18px 10px;
-    scrollbar-width: none;
-  }
-  .phones::-webkit-scrollbar { display: none; }
-  .phone-wrap { flex: 0 0 min(80vw, 300px); scroll-snap-align: center; }
-  .phone {
-    background: var(--bezel);
-    border-radius: 42px;
-    padding: 9px;
-    box-shadow: var(--shadow);
-    position: relative;
-  }
-  .screen {
-    background: var(--screen);
-    border-radius: 34px;
-    padding: 0 14px;
-    height: 560px;
-    display: flex; flex-direction: column;
-    overflow: hidden;
-    font-size: .82rem;
-    position: relative;
-  }
-  /* status bar + dynamic island */
-  .statusbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 8px 6px;
-    font-size: .72rem; font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-  .statusbar svg { display: block; }
-  .island {
-    position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-    width: 82px; height: 22px;
-    background: var(--bezel);
-    border-radius: 12px;
-  }
-  .home-bar {
-    position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
-    width: 100px; height: 4px; border-radius: 2px;
-    background: var(--ink); opacity: .25;
-  }
-  /* app chrome */
-  .app-body { flex: 1; display: flex; flex-direction: column; gap: 10px; padding-top: 10px; overflow: hidden; }
-  .app-date { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-  .app-h { font-family: "Instrument Serif", Georgia, serif; font-size: 1.3rem; line-height: 1.15; }
-  .tabbar {
-    display: flex;
-    border-top: 1px solid var(--line);
-    padding: 8px 0 18px;
-    margin: 0 -14px;
-    background: var(--screen);
-  }
-  .tab {
-    flex: 1;
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
-    font-size: .6rem; font-weight: 500;
-    color: var(--muted);
-  }
-  .tab svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-  .tab.on { color: var(--accent); font-weight: 600; }
-
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 5px 11px;
-    font-size: .74rem;
-    color: var(--muted);
-    background: var(--surface);
-  }
-  .chip.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 500; }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 10px 12px;
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .card b { font-weight: 600; font-size: .8rem; }
-  .card .sub { color: var(--muted); font-size: .72rem; }
-  .card-row { display: flex; justify-content: space-between; align-items: baseline; }
-  .label-mini { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-  .mood { display: flex; gap: 8px; padding-top: 2px; }
-  .mood i {
-    width: 26px; height: 26px; border-radius: 50%;
-    border: 1.5px solid var(--line);
-    background: var(--screen-2);
-  }
-  .mood i.sel { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-  .cta {
-    margin-top: auto; margin-bottom: 8px;
-    background: var(--accent);
-    color: var(--accent-ink);
-    border-radius: 13px;
-    text-align: center;
-    padding: 12px;
-    font-weight: 600;
-    font-size: .82rem;
-  }
-  .num { font-variant-numeric: tabular-nums; }
-
-  /* cycle chart */
-  .chart { display: flex; align-items: flex-end; gap: 10px; height: 88px; padding: 4px 2px 0; }
-  .bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .bar i { width: 100%; border-radius: 6px 6px 2px 2px; background: var(--accent-soft); }
-  .bar.hi i { background: var(--accent); }
-  .bar .v { font-size: .66rem; font-weight: 600; font-variant-numeric: tabular-nums; }
-  .bar .m { font-size: .6rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-
-  .badge {
-    display: inline-block;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border-radius: 6px;
-    padding: 1px 7px;
-    font-size: .62rem; font-weight: 600;
-    letter-spacing: .04em;
-  }
-  .art { gap: 6px; }
-  .art .meta { display: flex; gap: 8px; align-items: center; }
-  .art .rt { font-size: .64rem; color: var(--muted); }
-
-  .phone-label { text-align: center; margin-top: 12px; }
-  .phone-label b { display: block; font-weight: 600; font-size: .95rem; }
-  .phone-label span { font-size: .82rem; color: var(--muted); }
-  .dots { display: flex; justify-content: center; gap: 7px; margin-top: 14px; }
-  .dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--line); transition: background .15s ease, transform .15s ease; }
-  .dots i.on { background: var(--accent); transform: scale(1.25); }
-  .swipe-hint { text-align: center; font-size: .82rem; color: var(--muted); margin-top: 8px; }
-  @media (min-width: 700px) {
-    .swipe-hint { display: none; }
-    .phones { justify-content: center; }
-    .phone-wrap { flex-basis: 196px; }
-    .screen { height: 400px; font-size: .62rem; padding: 0 10px; }
-    .screen .app-h { font-size: .95rem; }
-    .phone { border-radius: 30px; padding: 6px; }
-    .screen { border-radius: 25px; }
-    .island { width: 58px; height: 16px; top: 7px; }
-    .statusbar { font-size: .55rem; padding: 8px 6px 4px; }
-    .chart { height: 62px; }
-    .cta { padding: 8px; font-size: .62rem; }
-    .tabbar { padding-bottom: 12px; margin: 0 -10px; }
-    .chip { padding: 3px 8px; font-size: .56rem; }
-    .mood i { width: 18px; height: 18px; }
-    .dots { display: none; }
-  }
 
   /* ---------- Ratings ---------- */
   .progress {
@@ -373,183 +214,17 @@
     loin, j’ai besoin de l’avis de quelqu’un qui sait de quoi on parle&nbsp;: toi.
     Sois cash — «&nbsp;pas besoin&nbsp;» m’aide autant que «&nbsp;essentielle&nbsp;».</p>
     <div class="steps">
-      <div class="step"><span class="n">1</span><p><b>Regarde l’app</b><span>3 écrans, c’est une maquette — rien n’existe encore.</span></p></div>
-      <div class="step"><span class="n">2</span><p><b>Note les idées</b><span>14 idées, un tap chacune&nbsp;: essentielle, pourquoi pas, ou pas besoin.</span></p></div>
+      <div class="step"><span class="n">1</span><p><b>Note les idées</b><span>14 idées de fonctionnalités, un tap chacune&nbsp;: essentielle, pourquoi pas, ou pas besoin.</span></p></div>
+      <div class="step"><span class="n">2</span><p><b>Réponds à 5 questions</b><span>Court, comme tu parles. Ou de vive voix si tu préfères.</span></p></div>
       <div class="step"><span class="n">3</span><p><b>Envoie-moi la capture</b><span>Un récap se remplit tout seul en bas. Capture d’écran, et c’est fini.</span></p></div>
     </div>
     <p class="privacy">Rien n’est enregistré ni envoyé nulle part&nbsp;: tes réponses restent
     sur ton téléphone jusqu’à ta capture d’écran.</p>
   </section>
 
-  <!-- ======================= Concept ======================= -->
-  <section>
-    <div class="sec-head"><span class="n">1</span><h2>L’app, en trois écrans</h2></div>
-    <p class="lede">Fais glisser. Fais-toi juste une première impression.</p>
-
-    <div class="phones" id="phones" aria-label="Trois écrans de maquette, à faire défiler">
-
-      <!-- Écran 1 : Journal -->
-      <div class="phone-wrap">
-        <div class="phone">
-          <span class="island" aria-hidden="true"></span>
-          <div class="screen">
-            <div class="statusbar" aria-hidden="true">
-              <span class="num">9:41</span>
-              <svg width="46" height="12" viewBox="0 0 46 12">
-                <rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/>
-                <rect x="5" y="5" width="3" height="7" rx="1" fill="currentColor"/>
-                <rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"/>
-                <rect x="15" y="1" width="3" height="11" rx="1" fill="currentColor" opacity=".35"/>
-                <path d="M24 9.5 a5 5 0 0 1 7 0" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-                <path d="M22 6.8 a8 8 0 0 1 11 0" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>
-                <circle cx="27.5" cy="11" r="1.2" fill="currentColor"/>
-                <rect x="37" y="2.5" width="8" height="7" rx="2" stroke="currentColor" stroke-width="1" fill="none"/>
-                <rect x="38.2" y="3.7" width="4.5" height="4.6" rx="1" fill="currentColor"/>
-                <rect x="45.4" y="4.5" width="1" height="3" rx=".5" fill="currentColor" opacity=".6"/>
-              </svg>
-            </div>
-            <div class="app-body">
-              <span class="app-date">Mardi 18 août · Jour 54</span>
-              <span class="app-h">Comment ça va, aujourd’hui&nbsp;?</span>
-              <span class="label-mini">Symptômes — tape ceux du jour</span>
-              <div class="chips" aria-hidden="true">
-                <span class="chip on">Fatigue</span>
-                <span class="chip">Acné</span>
-                <span class="chip on">Douleurs</span>
-                <span class="chip">Cheveux</span>
-                <span class="chip on">Mal dormi</span>
-                <span class="chip">Fringales</span>
-              </div>
-              <span class="label-mini">Moral</span>
-              <div class="mood" aria-hidden="true"><i></i><i class="sel"></i><i></i><i></i><i></i></div>
-              <div class="card">
-                <div class="card-row"><b>Règles</b><span class="sub num">J54 — rien à signaler</span></div>
-              </div>
-              <div class="cta">C’est noté ✓</div>
-            </div>
-            <div class="tabbar" aria-hidden="true">
-              <span class="tab on"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Journal</span>
-              <span class="tab"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4"/><path d="M10 13h5M10 17h5"/></svg>Dossier</span>
-              <span class="tab"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h5v18H6a2 2 0 0 1-2-2z"/><path d="M20 5a2 2 0 0 0-2-2h-5v18h5a2 2 0 0 0 2-2z"/></svg>Comprendre</span>
-            </div>
-            <span class="home-bar" aria-hidden="true"></span>
-          </div>
-        </div>
-        <p class="phone-label"><b>Le journal</b><span>30 secondes par jour, pas plus</span></p>
-      </div>
-
-      <!-- Écran 2 : Dossier -->
-      <div class="phone-wrap">
-        <div class="phone">
-          <span class="island" aria-hidden="true"></span>
-          <div class="screen">
-            <div class="statusbar" aria-hidden="true">
-              <span class="num">9:41</span>
-              <svg width="46" height="12" viewBox="0 0 46 12">
-                <rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/>
-                <rect x="5" y="5" width="3" height="7" rx="1" fill="currentColor"/>
-                <rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"/>
-                <rect x="15" y="1" width="3" height="11" rx="1" fill="currentColor" opacity=".35"/>
-                <path d="M24 9.5 a5 5 0 0 1 7 0" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-                <path d="M22 6.8 a8 8 0 0 1 11 0" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>
-                <circle cx="27.5" cy="11" r="1.2" fill="currentColor"/>
-                <rect x="37" y="2.5" width="8" height="7" rx="2" stroke="currentColor" stroke-width="1" fill="none"/>
-                <rect x="38.2" y="3.7" width="4.5" height="4.6" rx="1" fill="currentColor"/>
-                <rect x="45.4" y="4.5" width="1" height="3" rx=".5" fill="currentColor" opacity=".6"/>
-              </svg>
-            </div>
-            <div class="app-body">
-              <span class="app-date">Mon dossier · mars → août</span>
-              <span class="app-h">Prête pour ta consultation</span>
-              <div class="card">
-                <span class="label-mini">Longueur de tes 4 derniers cycles</span>
-                <div class="chart" aria-hidden="true">
-                  <span class="bar"><span class="v num">32&nbsp;j</span><i style="height:38%"></i><span class="m">mars</span></span>
-                  <span class="bar"><span class="v num">44&nbsp;j</span><i style="height:58%"></i><span class="m">avril</span></span>
-                  <span class="bar hi"><span class="v num">58&nbsp;j</span><i style="height:82%"></i><span class="m">juin</span></span>
-                  <span class="bar"><span class="v num">38&nbsp;j</span><i style="height:47%"></i><span class="m">août</span></span>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-row"><b>Symptômes fréquents</b></div>
-                <span class="sub num">Fatigue 61 j · Douleurs 24 j · Acné 18 j</span>
-              </div>
-              <div class="card">
-                <b>Tes questions pour la gynéco</b>
-                <span class="sub">«&nbsp;Faut-il refaire un bilan hormonal&nbsp;?&nbsp;»</span>
-              </div>
-              <div class="cta">Exporter en PDF pour mon médecin</div>
-            </div>
-            <div class="tabbar" aria-hidden="true">
-              <span class="tab"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Journal</span>
-              <span class="tab on"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4"/><path d="M10 13h5M10 17h5"/></svg>Dossier</span>
-              <span class="tab"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h5v18H6a2 2 0 0 1-2-2z"/><path d="M20 5a2 2 0 0 0-2-2h-5v18h5a2 2 0 0 0 2-2z"/></svg>Comprendre</span>
-            </div>
-            <span class="home-bar" aria-hidden="true"></span>
-          </div>
-        </div>
-        <p class="phone-label"><b>Le dossier</b><span>Tes données, noir sur blanc, à montrer au médecin</span></p>
-      </div>
-
-      <!-- Écran 3 : Comprendre -->
-      <div class="phone-wrap">
-        <div class="phone">
-          <span class="island" aria-hidden="true"></span>
-          <div class="screen">
-            <div class="statusbar" aria-hidden="true">
-              <span class="num">9:41</span>
-              <svg width="46" height="12" viewBox="0 0 46 12">
-                <rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/>
-                <rect x="5" y="5" width="3" height="7" rx="1" fill="currentColor"/>
-                <rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"/>
-                <rect x="15" y="1" width="3" height="11" rx="1" fill="currentColor" opacity=".35"/>
-                <path d="M24 9.5 a5 5 0 0 1 7 0" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-                <path d="M22 6.8 a8 8 0 0 1 11 0" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>
-                <circle cx="27.5" cy="11" r="1.2" fill="currentColor"/>
-                <rect x="37" y="2.5" width="8" height="7" rx="2" stroke="currentColor" stroke-width="1" fill="none"/>
-                <rect x="38.2" y="3.7" width="4.5" height="4.6" rx="1" fill="currentColor"/>
-                <rect x="45.4" y="4.5" width="1" height="3" rx=".5" fill="currentColor" opacity=".6"/>
-              </svg>
-            </div>
-            <div class="app-body">
-              <span class="app-date">Comprendre</span>
-              <span class="app-h">Des réponses fiables, en français</span>
-              <div class="card art">
-                <div class="meta"><span class="badge">Nouveau nom</span><span class="rt">3 min</span></div>
-                <b>Le SOPK devient le SMOP</b>
-                <span class="sub">Ce que ce nouveau nom change (et ne change pas) pour toi</span>
-              </div>
-              <div class="card art">
-                <div class="meta"><span class="badge">Source&nbsp;: Inserm</span><span class="rt">4 min</span></div>
-                <b>Insuline et SOPK, expliqué simplement</b>
-                <span class="sub">Pourquoi on t’en parle tout le temps</span>
-              </div>
-              <div class="card art">
-                <div class="meta"><span class="badge">Source&nbsp;: Inserm</span><span class="rt">3 min</span></div>
-                <b>Hirsutisme&nbsp;: tu n’es pas toute seule</b>
-                <span class="sub">7 femmes sur 10 concernées — et personne n’en parle</span>
-              </div>
-              <div class="cta">Lire</div>
-            </div>
-            <div class="tabbar" aria-hidden="true">
-              <span class="tab"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Journal</span>
-              <span class="tab"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4"/><path d="M10 13h5M10 17h5"/></svg>Dossier</span>
-              <span class="tab on"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h5v18H6a2 2 0 0 1-2-2z"/><path d="M20 5a2 2 0 0 0-2-2h-5v18h5a2 2 0 0 0 2-2z"/></svg>Comprendre</span>
-            </div>
-            <span class="home-bar" aria-hidden="true"></span>
-          </div>
-        </div>
-        <p class="phone-label"><b>Comprendre</b><span>Des articles qui citent leurs sources, zéro blabla</span></p>
-      </div>
-    </div>
-
-    <div class="dots" id="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
-    <p class="swipe-hint">← Fais glisser pour voir les trois écrans →</p>
-  </section>
-
   <!-- ======================= Ratings ======================= -->
   <section id="rate">
-    <div class="sec-head"><span class="n">2</span><h2>Note chaque idée, à l’instinct</h2></div>
+    <div class="sec-head"><span class="n">1</span><h2>Note chaque idée, à l’instinct</h2></div>
     <p class="lede">Certaines sont prévues, d’autres non — je ne te dis pas lesquelles, exprès.
     Réponds pour <em>toi</em>, pas «&nbsp;pour les autres&nbsp;».</p>
 
@@ -559,7 +234,7 @@
 
   <!-- ======================= Questions ======================= -->
   <section>
-    <div class="sec-head"><span class="n">3</span><h2>Cinq dernières questions</h2></div>
+    <div class="sec-head"><span class="n">2</span><h2>Cinq dernières questions</h2></div>
     <p class="lede">Réponds court, comme tu parles. Tu peux aussi me répondre de vive voix et
     laisser vide ici.</p>
 
@@ -590,7 +265,7 @@
 
   <!-- ======================= Recap ======================= -->
   <section>
-    <div class="sec-head"><span class="n">✓</span><h2>Ton récap</h2></div>
+    <div class="sec-head"><span class="n">3</span><h2>Ton récap</h2></div>
     <p class="lede">Il se remplit tout seul avec tes réponses.</p>
 
     <div class="recap" id="recap"></div>
@@ -700,7 +375,7 @@
     if (unrated) {
       const p = document.createElement("p");
       p.className = "none";
-      p.textContent = unrated + " idée" + (unrated > 1 ? "s" : "") + " pas encore notée" + (unrated > 1 ? "s" : "") + " — remonte à l’étape 2 si tu en as loupé.";
+      p.textContent = unrated + " idée" + (unrated > 1 ? "s" : "") + " pas encore notée" + (unrated > 1 ? "s" : "") + " — remonte à l’étape 1 si tu en as loupé.";
       recap.appendChild(p);
     }
 
@@ -727,20 +402,6 @@
   }
 
   render();
-
-  // Carousel dots
-  const phonesEl = document.getElementById("phones");
-  const dots = [...document.querySelectorAll("#dots i")];
-  const wraps = [...document.querySelectorAll(".phone-wrap")];
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const i = wraps.indexOf(e.target);
-        dots.forEach((d, j) => d.classList.toggle("on", j === i));
-      }
-    });
-  }, { root: phonesEl, threshold: 0.6 });
-  wraps.forEach(w => io.observe(w));
 </script>
 </body>
 </html>
