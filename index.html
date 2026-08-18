@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Carnet — ton avis</title>
-<meta name="description" content="5 minutes pour donner ton avis sur une idée d'app pour le SOPK/SMOP.">
+<meta name="description" content="5 minutes pour donner ton avis sur une idée d'app pour le SOPK.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='4' width='20' height='24' rx='3' fill='%2396355A'/%3E%3Crect x='10' y='10' width='12' height='2' rx='1' fill='%23FFF7FA'/%3E%3Crect x='10' y='15' width='12' height='2' rx='1' fill='%23FFF7FA' opacity='.7'/%3E%3Crect x='10' y='20' width='8' height='2' rx='1' fill='%23FFF7FA' opacity='.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +48,7 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 620px; margin: 0 auto; padding: 24px 18px 110px; display: flex; flex-direction: column; gap: 52px; }
+  main { max-width: 620px; margin: 0 auto; padding: 32px 18px 100px; display: flex; flex-direction: column; gap: 48px; }
 
   h1, h2 {
     font-family: "Instrument Serif", Georgia, serif;
@@ -57,46 +57,19 @@
     margin: 0;
     text-wrap: balance;
   }
-  h1 { font-size: clamp(2.1rem, 8.5vw, 2.7rem); }
-  h2 { font-size: 1.65rem; }
+  h1 { font-size: clamp(2.1rem, 8.5vw, 2.6rem); }
+  h2 { font-size: 1.6rem; }
   p { margin: 0; }
   .muted { color: var(--muted); }
   .small { font-size: .875rem; }
 
-  /* ---------- Steps header ---------- */
-  .hero { display: flex; flex-direction: column; gap: 18px; padding-top: 8px; }
-  .hero .kicker {
-    font-size: .72rem; font-weight: 600;
-    letter-spacing: .14em; text-transform: uppercase;
-    color: var(--accent);
-  }
-  .steps { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-  .step {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px 14px;
-  }
-  .step .n {
-    flex: none;
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: var(--accent-ink);
-    font-weight: 600; font-size: .9rem;
-    display: grid; place-items: center;
-    font-variant-numeric: tabular-nums;
-  }
-  .step b { font-weight: 600; }
-  .step span { display: block; font-size: .85rem; color: var(--muted); }
+  .hero { display: flex; flex-direction: column; gap: 14px; }
   .privacy {
-    font-size: .82rem; color: var(--muted);
+    font-size: .85rem; color: var(--muted);
     border-left: 3px solid var(--accent-soft);
     padding-left: 12px;
   }
 
-  /* ---------- Section headers ---------- */
   .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
   .sec-head .n {
     flex: none;
@@ -110,7 +83,7 @@
   }
   section > .lede { margin-bottom: 20px; color: var(--muted); }
 
-  /* ---------- Ratings ---------- */
+  /* ---------- Notation ---------- */
   .progress {
     position: sticky; top: 0; z-index: 5;
     background: var(--bg);
@@ -168,7 +141,7 @@
   .q textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
   .q .hint { font-size: .82rem; color: var(--muted); margin-top: 5px; }
 
-  /* ---------- Recap ---------- */
+  /* ---------- Récap ---------- */
   .recap {
     background: var(--surface);
     border: 1px solid var(--line);
@@ -195,7 +168,6 @@
     font-size: .95rem;
     margin-top: 16px;
   }
-  footer { text-align: center; font-size: .78rem; color: var(--muted); margin-top: 24px; }
 
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
@@ -206,97 +178,87 @@
 <body>
 <main>
 
-  <!-- ======================= Hero ======================= -->
   <section class="hero">
-    <span class="kicker">5 minutes · aucune bonne réponse</span>
-    <h1>J’ai besoin de ton avis (le vrai)</h1>
-    <p>Je réfléchis à une app pour vivre plus facilement avec un SOPK. Avant d’aller plus
-    loin, j’ai besoin de l’avis de quelqu’un qui sait de quoi on parle&nbsp;: toi.
-    Sois cash — «&nbsp;pas besoin&nbsp;» m’aide autant que «&nbsp;essentielle&nbsp;».</p>
-    <div class="steps">
-      <div class="step"><span class="n">1</span><p><b>Note les idées</b><span>14 idées de fonctionnalités, un tap chacune&nbsp;: essentielle, pourquoi pas, ou pas besoin.</span></p></div>
-      <div class="step"><span class="n">2</span><p><b>Réponds à 5 questions</b><span>Court, comme tu parles. Ou de vive voix si tu préfères.</span></p></div>
-      <div class="step"><span class="n">3</span><p><b>Envoie-moi la capture</b><span>Un récap se remplit tout seul en bas. Capture d’écran, et c’est fini.</span></p></div>
-    </div>
-    <p class="privacy">Rien n’est enregistré ni envoyé nulle part&nbsp;: tes réponses restent
-    sur ton téléphone jusqu’à ta capture d’écran.</p>
+    <h1>J’ai besoin de ton avis</h1>
+    <p>Je réfléchis à une app pour les femmes qui ont un SOPK. Comme tu vis avec,
+    ton avis compte plus que celui de n’importe qui.</p>
+    <p>Ça prend 5 minutes. Réponds franchement&nbsp;: si un truc ne te servirait à rien,
+    dis-le, c’est ce qui m’aide le plus.</p>
+    <p class="privacy">Rien n’est envoyé nulle part. À la fin, tu m’envoies juste une
+    capture d’écran du récap.</p>
   </section>
 
-  <!-- ======================= Ratings ======================= -->
   <section id="rate">
-    <div class="sec-head"><span class="n">1</span><h2>Note chaque idée, à l’instinct</h2></div>
-    <p class="lede">Certaines sont prévues, d’autres non — je ne te dis pas lesquelles, exprès.
-    Réponds pour <em>toi</em>, pas «&nbsp;pour les autres&nbsp;».</p>
+    <div class="sec-head"><span class="n">1</span><h2>Les fonctionnalités</h2></div>
+    <p class="lede">Voici les fonctionnalités auxquelles j’ai pensé. Pour chacune,
+    dis-moi si pour toi c’est «&nbsp;pas besoin&nbsp;», «&nbsp;pourquoi pas&nbsp;» ou
+    «&nbsp;essentielle&nbsp;».</p>
 
-    <div class="progress"><span class="muted small">Idées notées</span><b id="count">0 / 14</b></div>
+    <div class="progress"><span class="muted small">Notées</span><b id="count">0 / 14</b></div>
     <div class="feats" id="feats"></div>
   </section>
 
-  <!-- ======================= Questions ======================= -->
   <section>
-    <div class="sec-head"><span class="n">2</span><h2>Cinq dernières questions</h2></div>
-    <p class="lede">Réponds court, comme tu parles. Tu peux aussi me répondre de vive voix et
+    <div class="sec-head"><span class="n">2</span><h2>Quelques questions</h2></div>
+    <p class="lede">Réponds avec tes mots. Tu peux aussi me le dire de vive voix et
     laisser vide ici.</p>
 
     <div class="qs">
       <div class="q">
         <label for="q1">Aujourd’hui, tu utilises quoi pour gérer ton SOPK&nbsp;?</label>
-        <textarea id="q1" data-q="Aujourd’hui elle utilise" placeholder="Une app, un carnet, rien du tout…"></textarea>
+        <textarea id="q1" data-q="Ce que tu utilises aujourd’hui" placeholder="Une app, un carnet, rien…"></textarea>
       </div>
       <div class="q">
         <label for="q2">Qu’est-ce qui te pèse le plus au quotidien&nbsp;?</label>
-        <textarea id="q2" data-q="Ce qui lui pèse le plus" placeholder="Le premier truc qui te vient."></textarea>
+        <textarea id="q2" data-q="Ce qui te pèse le plus" placeholder="Le premier truc qui te vient."></textarea>
       </div>
       <div class="q">
         <label for="q3">Tu as déjà dépensé de l’argent à cause du SOPK&nbsp;?</label>
-        <textarea id="q3" data-q="Ses dépenses SOPK" placeholder="Compléments, consultations, programmes… et environ combien ?"></textarea>
+        <textarea id="q3" data-q="Tes dépenses" placeholder="Compléments, consultations… et environ combien ?"></textarea>
       </div>
       <div class="q">
-        <label for="q4">Si cette app existait&nbsp;: tu la paierais&nbsp;?</label>
-        <textarea id="q4" data-q="Prête à payer ?" placeholder="Franchement. Et si oui, combien par mois te semblerait honnête ?"></textarea>
-        <p class="hint">«&nbsp;Non&nbsp;» est une réponse très utile aussi.</p>
+        <label for="q4">Si cette app existait, tu la paierais&nbsp;?</label>
+        <textarea id="q4" data-q="Prête à payer ?" placeholder="Et si oui, combien par mois te semblerait correct ?"></textarea>
+        <p class="hint">«&nbsp;Non&nbsp;» est une réponse utile aussi.</p>
       </div>
       <div class="q">
-        <label for="q5">Il manque quoi, dans tout ce que tu as vu&nbsp;?</label>
-        <textarea id="q5" data-q="Ce qui manque" placeholder="Un truc dont tu rêves et que personne ne fait ?"></textarea>
+        <label for="q5">Il manque quoi dans cette liste&nbsp;?</label>
+        <textarea id="q5" data-q="Ce qui manque" placeholder="Un truc qui t’aiderait et que je n’ai pas cité ?"></textarea>
       </div>
     </div>
   </section>
 
-  <!-- ======================= Recap ======================= -->
   <section>
     <div class="sec-head"><span class="n">3</span><h2>Ton récap</h2></div>
     <p class="lede">Il se remplit tout seul avec tes réponses.</p>
 
     <div class="recap" id="recap"></div>
 
-    <p class="send"><b>C’est fini&nbsp;!</b> Fais une ou plusieurs captures d’écran de ce récap
-    et envoie-les-moi. Merci mille fois — tu viens d’influencer directement ce qu’on va
-    construire (ou pas).</p>
-
-    <footer>Maquette de travail · rien n’est collecté sur cette page · «&nbsp;Carnet&nbsp;» est un nom de code</footer>
+    <p class="send"><b>C’est fini&nbsp;!</b> Fais une capture d’écran de ce récap et
+    envoie-la-moi. Merci beaucoup.</p>
   </section>
 
 </main>
 
 <script>
   const FEATURES = [
-    ["journal", "Le journal express", "Noter tes symptômes, ton moral et ton cycle en 30 secondes par jour."],
-    ["dossier", "Le dossier pour ton médecin", "Un PDF clair avec l’historique de tes cycles et symptômes, à poser sur le bureau de ta gynéco."],
-    ["predictions", "La prédiction des règles", "L’app estime la date de tes prochaines règles, même avec un cycle irrégulier."],
-    ["articles", "Des articles fiables en français", "Du contenu sur le SOPK/SMOP qui cite ses sources, écrit pour de vrais humains."],
-    ["alimentation", "Des conseils alimentation personnalisés", "« Vu tes symptômes, voilà quoi manger cette semaine » — des recommandations rien que pour toi."],
-    ["scanner", "Le scanner d’aliments", "Tu scannes un produit au supermarché, l’app te dit s’il est compatible SOPK."],
+    ["journal", "Le journal", "Tu notes tes symptômes, ton moral et ton cycle en 30 secondes par jour."],
+    ["dossier", "Le dossier pour ton médecin", "Un PDF avec l’historique de tes cycles et symptômes, à montrer à ta gynéco."],
+    ["predictions", "La prédiction des règles", "L’app estime la date de tes prochaines règles, même si ton cycle est irrégulier."],
+    ["articles", "Des articles en français", "Des explications sur le SOPK, avec les sources citées."],
+    ["alimentation", "Des conseils alimentation", "Des idées de quoi manger, adaptées à tes symptômes."],
+    ["scanner", "Le scanner d’aliments", "Tu scannes un produit au supermarché, l’app te dit s’il est adapté au SOPK."],
     ["score", "Un score SOPK", "Une note qui suit l’évolution de ton syndrome au fil des mois."],
-    ["rappels", "Les rappels", "Compléments, médicaments, rendez-vous : l’app te fait penser à tout."],
-    ["communaute", "Une communauté", "Échanger avec d’autres femmes SOPK, anonymement, sans le bazar de Facebook."],
-    ["annuaire", "L’annuaire de soignants", "Trouver près de chez toi des médecins qui connaissent vraiment le SOPK."],
-    ["mental", "Le suivi du moral", "Un espace dédié à la santé mentale : humeur, anxiété, et des exercices pour souffler."],
-    ["fertilite", "L’aide fertilité", "Repérer ta fenêtre de fertilité si tu as (un jour) un projet bébé."],
-    ["poids", "Le suivi du poids (optionnel)", "Pour celles qui le veulent — jamais imposé, jamais culpabilisant."],
-    ["complements", "Le suivi des compléments", "Inositol & co : ce que tu prends, depuis quand, et ce que ça change sur tes symptômes."],
+    ["rappels", "Les rappels", "Compléments, médicaments, rendez-vous."],
+    ["communaute", "Une communauté", "Échanger anonymement avec d’autres femmes qui ont un SOPK."],
+    ["annuaire", "L’annuaire de soignants", "Trouver près de chez toi des médecins qui connaissent bien le SOPK."],
+    ["mental", "Le suivi du moral", "Suivre ton humeur, avec des exercices contre le stress et l’anxiété."],
+    ["fertilite", "L’aide fertilité", "Repérer ta fenêtre de fertilité si tu as un projet bébé."],
+    ["poids", "Le suivi du poids", "Seulement si tu le veux, jamais imposé."],
+    ["complements", "Le suivi des compléments", "Noter ce que tu prends (inositol, etc.) et voir si ça change quelque chose."],
   ];
-  const RATINGS = ["Essentielle", "Pourquoi pas", "Pas besoin"];
+  const RATINGS = ["Pas besoin", "Pourquoi pas", "Essentielle"];
+  const RECAP_ORDER = ["Essentielle", "Pourquoi pas", "Pas besoin"];
   const KEY = "carnet-smop-proto";
 
   let state = { r: {}, q: {} };
@@ -351,7 +313,7 @@
   function renderRecap() {
     const recap = document.getElementById("recap");
     recap.innerHTML = "";
-    RATINGS.forEach(r => {
+    RECAP_ORDER.forEach(r => {
       const names = FEATURES.filter(([id]) => state.r[id] === r).map(([, t]) => t);
       const g = document.createElement("div");
       g.className = "recap-group";
@@ -375,7 +337,7 @@
     if (unrated) {
       const p = document.createElement("p");
       p.className = "none";
-      p.textContent = unrated + " idée" + (unrated > 1 ? "s" : "") + " pas encore notée" + (unrated > 1 ? "s" : "") + " — remonte à l’étape 1 si tu en as loupé.";
+      p.textContent = "Il t’en reste " + unrated + " à noter plus haut.";
       recap.appendChild(p);
     }
 
@@ -384,7 +346,7 @@
       const g = document.createElement("div");
       g.className = "recap-group";
       const h = document.createElement("h3");
-      h.textContent = "Tes mots à toi";
+      h.textContent = "Tes réponses";
       g.appendChild(h);
       answered.forEach(t => {
         const lbl = document.createElement("p");
