@@ -124,6 +124,29 @@
   }
   .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+  /* ---------- Top 3 & prix ---------- */
+  .top3 { margin-top: 30px; }
+  .top3 h3 { margin: 0 0 4px; font-size: 1.15rem; font-weight: 600; }
+  .top3 .sub { color: var(--muted); font-size: .89rem; margin: 0 0 12px; }
+  .pick { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pick button {
+    font: inherit; font-size: .84rem; font-weight: 500;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 9px 14px;
+    cursor: pointer;
+  }
+  .pick button[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+  .pick button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .q .pick { margin-bottom: 10px; }
+
   /* ---------- Questions ---------- */
   .qs { display: flex; flex-direction: column; gap: 20px; }
   .q label { display: block; font-weight: 600; margin-bottom: 7px; }
@@ -196,6 +219,12 @@
 
     <div class="progress"><span class="muted small">Notées</span><b id="count">0 / 14</b></div>
     <div class="feats" id="feats"></div>
+
+    <div class="top3">
+      <h3>Et si tu ne pouvais en garder que 3&nbsp;?</h3>
+      <p class="sub">Tape tes 3 préférées.</p>
+      <div class="pick" id="top3"></div>
+    </div>
   </section>
 
   <section>
@@ -218,7 +247,8 @@
       </div>
       <div class="q">
         <label for="q4">Si cette app existait, tu la paierais&nbsp;?</label>
-        <textarea id="q4" data-q="Prête à payer ?" placeholder="Et si oui, combien par mois te semblerait correct ?"></textarea>
+        <div class="pick" id="price"></div>
+        <textarea id="q4" data-q="Sur le prix" placeholder="Un mot là-dessus si tu veux."></textarea>
         <p class="hint">«&nbsp;Non&nbsp;» est une réponse utile aussi.</p>
       </div>
       <div class="q">
@@ -259,10 +289,13 @@
   ];
   const RATINGS = ["Pas besoin", "Pourquoi pas", "Essentielle"];
   const RECAP_ORDER = ["Essentielle", "Pourquoi pas", "Pas besoin"];
+  const PRICES = ["Non", "3 €/mois", "6 €/mois", "10 €/mois", "Un achat unique (20–30 €)"];
   const KEY = "carnet-smop-proto";
 
   let state = { r: {}, q: {} };
   try { state = Object.assign(state, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+  if (!Array.isArray(state.top3)) state.top3 = [];
+  if (typeof state.price !== "string") state.price = "";
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
 
   const featsEl = document.getElementById("feats");
@@ -292,6 +325,44 @@
     featsEl.appendChild(card);
   });
 
+  const top3El = document.getElementById("top3");
+  FEATURES.forEach(([id, title]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = title;
+    b.dataset.id = id;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => {
+      const i = state.top3.indexOf(id);
+      if (i >= 0) state.top3.splice(i, 1);
+      else if (state.top3.length < 3) state.top3.push(id);
+      else return;
+      save(); renderPicks();
+    });
+    top3El.appendChild(b);
+  });
+
+  const priceEl = document.getElementById("price");
+  PRICES.forEach(p => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = p;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => {
+      state.price = (state.price === p) ? "" : p;
+      save(); renderPicks();
+    });
+    priceEl.appendChild(b);
+  });
+
+  function renderPicks() {
+    [...top3El.children].forEach(b =>
+      b.setAttribute("aria-pressed", String(state.top3.includes(b.dataset.id))));
+    [...priceEl.children].forEach(b =>
+      b.setAttribute("aria-pressed", String(b.textContent === state.price)));
+    renderRecap();
+  }
+
   document.querySelectorAll(".q textarea").forEach(t => {
     if (state.q[t.id]) t.value = state.q[t.id];
     t.addEventListener("input", () => { state.q[t.id] = t.value; save(); renderRecap(); });
@@ -313,6 +384,22 @@
   function renderRecap() {
     const recap = document.getElementById("recap");
     recap.innerHTML = "";
+
+    if (state.top3.length) {
+      const g = document.createElement("div");
+      g.className = "recap-group";
+      const h = document.createElement("h3");
+      h.textContent = "Ton top 3";
+      g.appendChild(h);
+      const ul = document.createElement("ul");
+      state.top3.forEach(id => {
+        const f = FEATURES.find(x => x[0] === id);
+        if (f) { const li = document.createElement("li"); li.textContent = f[1]; ul.appendChild(li); }
+      });
+      g.appendChild(ul);
+      recap.appendChild(g);
+    }
+
     RECAP_ORDER.forEach(r => {
       const names = FEATURES.filter(([id]) => state.r[id] === r).map(([, t]) => t);
       const g = document.createElement("div");
@@ -342,12 +429,23 @@
     }
 
     const answered = [...document.querySelectorAll(".q textarea")].filter(t => (state.q[t.id] || "").trim());
-    if (answered.length) {
+    if (answered.length || state.price) {
       const g = document.createElement("div");
       g.className = "recap-group";
       const h = document.createElement("h3");
       h.textContent = "Tes réponses";
       g.appendChild(h);
+      if (state.price) {
+        const lbl = document.createElement("p");
+        lbl.innerHTML = "<b></b>";
+        lbl.querySelector("b").textContent = "Prête à payer ? :";
+        lbl.style.fontSize = ".82rem";
+        lbl.style.marginBottom = "2px";
+        const a = document.createElement("p");
+        a.className = "recap-answer";
+        a.textContent = state.price;
+        g.appendChild(lbl); g.appendChild(a);
+      }
       answered.forEach(t => {
         const lbl = document.createElement("p");
         lbl.innerHTML = "<b></b>";
@@ -364,6 +462,7 @@
   }
 
   render();
+  renderPicks();
 </script>
 </body>
 </html>
